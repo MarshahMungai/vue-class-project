@@ -22,6 +22,22 @@ const routes = [
   {
     path: '/contacts',
     name: 'contacts', component: () => import(/* webpackChunkName: "contacts" */ '../views/ContactsView.vue')
+  },
+  {
+    path: '/signup',
+    name: 'signup', component: () => import(/* webpackChunkName: "signup" */ '../views/SignupView.vue')
+  },
+  {
+    path: '/login',
+    name: 'login', component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+  },
+  {
+    path: '/verify',
+    name: 'verify', component: () => import(/* webpackChunkName: "login" */ '../views/VerifyView.vue')
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard', component: () => import(/* webpackChunkName: "login" */ '../views/DashboardView.vue')
   }
 ]
 
