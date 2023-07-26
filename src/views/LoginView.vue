@@ -39,6 +39,10 @@ export default {
         // Handle the API response here (You can add success messages if needed)
         console.log(response.data);
 
+        // Store the token in local storage
+        const token = response.data.token;
+        localStorage.setItem('authToken', token);
+
         // Redirect to the DashboardView.vue after successful login
         router.push('/dashboard');
       } catch (error) {

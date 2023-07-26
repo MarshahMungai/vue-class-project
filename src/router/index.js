@@ -17,27 +17,27 @@ const routes = [
   },
   {
     path: '/services',
-     name: 'services', component: () => import (/* webpackChunkName: "services" */ '../views/ServicesView.vue')
+     name: 'services', component: () => import ('../views/ServicesView.vue')
   },
   {
     path: '/contacts',
-    name: 'contacts', component: () => import(/* webpackChunkName: "contacts" */ '../views/ContactsView.vue')
+    name: 'contacts', component: () => import('../views/ContactsView.vue')
   },
   {
     path: '/signup',
-    name: 'signup', component: () => import(/* webpackChunkName: "signup" */ '../views/SignupView.vue')
+    name: 'signup', component: () => import('../views/SignupView.vue')
   },
   {
     path: '/login',
-    name: 'login', component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+    name: 'login', component: () => import('../views/LoginView.vue')
   },
   {
     path: '/verify',
-    name: 'verify', component: () => import(/* webpackChunkName: "login" */ '../views/VerifyView.vue')
+    name: 'verify', component: () => import('../views/VerifyView.vue')
   },
   {
     path: '/dashboard',
-    name: 'dashboard', component: () => import(/* webpackChunkName: "login" */ '../views/DashboardView.vue')
+    name: 'dashboard', component: () => import('../views/DashboardView.vue')
   }
 ]
 
