@@ -23,6 +23,10 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import router from '../router';
+// import { useStore } from 'vuex';
+// import { useRouter } from 'vue-router';
+// const router = useRouter()
+// const store = useStore();
 
 export default {
   setup() {
@@ -36,15 +40,15 @@ export default {
           password: password.value,
         });
 
-        // Handle the API response here (You can add success messages if needed)
-        console.log(response.data);
-
         // Store the token in local storage
         const token = response.data.token;
-        localStorage.setItem('authToken', token);
+        localStorage.setItem('auth-token', token);
+
+        // Set the isLoggedIn state to true
+        // store.commit('setIsLoggedIn', true);
 
         // Redirect to the DashboardView.vue after successful login
-        router.push('/dashboard');
+        router.push({ name: 'dashboard' });
       } catch (error) {
         // Handle the API error here
         alert('Login failed. Please check your email and password.');
@@ -54,6 +58,7 @@ export default {
     return { email, password, login };
   },
 };
+
 </script>
 
 <style scoped>

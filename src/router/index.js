@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import store from '../store/index'
 
 const routes = [
   {
@@ -17,27 +18,34 @@ const routes = [
   },
   {
     path: '/services',
-     name: 'services', component: () => import ('../views/ServicesView.vue')
+    name: 'services', 
+    component: () => import ('../views/ServicesView.vue')
   },
   {
     path: '/contacts',
-    name: 'contacts', component: () => import('../views/ContactsView.vue')
+    name: 'contacts', 
+    component: () => import('../views/ContactsView.vue')
   },
   {
     path: '/signup',
-    name: 'signup', component: () => import('../views/SignupView.vue')
+    name: 'signup', 
+    component: () => import('../views/SignupView.vue')
   },
   {
     path: '/login',
-    name: 'login', component: () => import('../views/LoginView.vue')
+    name: 'login', 
+    component: () => import('../views/LoginView.vue')
   },
   {
     path: '/verify',
-    name: 'verify', component: () => import('../views/VerifyView.vue')
+    name: 'verify', 
+    component: () => import('../views/VerifyView.vue')
   },
   {
     path: '/dashboard',
-    name: 'dashboard', component: () => import('../views/DashboardView.vue')
+    name: 'dashboard', 
+    component: () => import('../views/DashboardView.vue'),
+    meta: { isLoggedIn: true }
   }
 ]
 
@@ -45,5 +53,20 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  store.dispatch('setIsLoggedInFromLocalStorage'); // Call an action to set the isLoggedIn state from localStorage
+
+  const isLoggedIn = store.state.isLoggedIn;
+
+  if (to.meta.isLoggedIn && !isLoggedIn) {
+    next('/login');
+  } else if (!to.meta.isLoggedIn && isLoggedIn) {
+    next('/dashboard');
+  } else {
+    next();
+  }
+});
+
 
 export default router

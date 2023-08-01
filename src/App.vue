@@ -1,30 +1,28 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/" v-if="!isLoggedIn">Home</router-link>
-      <router-link to="/about" v-if="!isLoggedIn">About</router-link>
-      <router-link to="/services" v-if="!isLoggedIn">Services</router-link>
-      <router-link to="/signup" v-if="!isLoggedIn">Signup</router-link>
-      <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
-      <router-link to="/dashboard" v-if="isLoggedIn">Dashboard</router-link>
-      <router-link to="#" v-if="isLoggedIn">Profile</router-link>
-      <router-link to="#" v-if="isLoggedIn">Statements</router-link>
-      <router-link to="#" v-if="isLoggedIn">Reports</router-link>
-      <router-link to="/logout" v-if="isLoggedIn">Logout</router-link>
+      <router-link to="/" v-if="!store.state.isLoggedIn">Home</router-link>
+      <router-link to="/about" v-if="!store.state.isLoggedIn">About</router-link>
+      <router-link to="/services" v-if="!store.state.isLoggedIn">Services</router-link>
+      <router-link to="/signup" v-if="!store.state.isLoggedIn">Signup</router-link>
+      <router-link to="/login" v-if="!store.state.isLoggedIn">Login</router-link>
+      <router-link to="/dashboard" v-if="store.state.isLoggedIn">Dashboard</router-link>
+      <router-link to="#" v-if="store.state.isLoggedIn">Profile</router-link>
+      <router-link to="#" v-if="store.state.isLoggedIn">Statements</router-link>
+      <router-link to="#" v-if="store.state.isLoggedIn">Reports</router-link>
+      <router-link to="#" v-if="store.state.isLoggedIn">Logout</router-link>
     </nav>
+    {{ store.state.isLoggedIn }}
     <router-view/>
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    isLoggedIn() {
-      const authToken = localStorage.getItem('authToken');
-      return !!authToken;
-    },
-  },
-};
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore()
+
+store.commit('setIsLoggedIn')
 </script>
 
 <style>
