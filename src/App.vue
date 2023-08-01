@@ -7,10 +7,9 @@
       <router-link to="/signup" v-if="!store.state.isLoggedIn">Signup</router-link>
       <router-link to="/login" v-if="!store.state.isLoggedIn">Login</router-link>
       <router-link to="/dashboard" v-if="store.state.isLoggedIn">Dashboard</router-link>
-      <router-link to="#" v-if="store.state.isLoggedIn">Profile</router-link>
-      <router-link to="#" v-if="store.state.isLoggedIn">Statements</router-link>
-      <router-link to="#" v-if="store.state.isLoggedIn">Reports</router-link>
-      <router-link to="#" v-if="store.state.isLoggedIn">Logout</router-link>
+      <router-link to="/profile" v-if="store.state.isLoggedIn">Profile</router-link>
+      <router-link to="/statements" v-if="store.state.isLoggedIn">Statements</router-link>
+      <router-link to="/logout" v-if="store.state.isLoggedIn">Logout</router-link>
     </nav>
     {{ store.state.isLoggedIn }}
     <router-view/>
